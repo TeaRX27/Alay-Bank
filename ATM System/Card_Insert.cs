@@ -53,7 +53,7 @@ namespace ATM_System
         public void Select_Card(string cardnum)
         {
             listView1.Items.Clear();
-            string query = "select PIN ,Block from card_list where Card_No ='"+encrcardnum+"'";
+            string query = "select Card_No from card_list";
             if (CreateNewCard.OpenConnection())
             {
                 try
@@ -62,8 +62,34 @@ namespace ATM_System
                     MySqlDataReader dataReader = cmd.ExecuteReader();
                     while (dataReader.Read())
                     {
-                        PINCode = EncryptDecrypt.DecryptString(dataReader[0].ToString(), CreateNewCard.salt);
-                        cardblock = EncryptDecrypt.DecryptString(dataReader[1].ToString(), CreateNewCard.salt);
+                       if (EncryptDecrypt.DecryptString(dataReader[0].ToString(), CreateNewCard.salt) == cardnum )
+                        {
+                            encrcardnum = dataReader[0].ToString();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    CreateNewCard.CloseConnection();
+                }
+                listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            }
+
+            query = "select Block from card_list where Card_No ='"+encrcardnum+"'";
+            if (CreateNewCard.OpenConnection())
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, CreateNewCard.conn);
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        cardblock = EncryptDecrypt.DecryptString(dataReader[0].ToString(), CreateNewCard.salt);
                     }
                 }
                 catch (Exception ex)
@@ -83,12 +109,12 @@ namespace ATM_System
             InitializeComponent();
             CreateNewCard.Initialize();
         }
-        
+        public static string cardnum;
         private void button1_Click(object sender, EventArgs e)
         {
             foreach(ListViewItem item in listView1.SelectedItems)
             {
-                string cardnum = item.SubItems[0].Text;
+                 cardnum = item.SubItems[0].Text;
                 Select_Card(cardnum);
                 if(cardblock == "False")
                 {
@@ -99,7 +125,7 @@ namespace ATM_System
                 else
                 {
                     MessageBox.Show("Your Card Has been Blocked\nPlease Contact Your Bank to Unblock your Card", "Blocked Card Inserted");
-                    Application.ExitThread();
+                    Application.Restart();
                 }
             }
             
@@ -108,6 +134,8 @@ namespace ATM_System
         private void Form1_Load(object sender, EventArgs e)
         {
             Populate_ListView("select Card_No,FN,LN from card_list");
+            encrcardnum = null;
+            cardblock = "True";
         }
 
         private void pictureBox1_DoubleClick(object sender, EventArgs e)

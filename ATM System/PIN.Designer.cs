@@ -220,6 +220,7 @@
             this.Name = "PIN";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PIN";
+            this.Load += new System.EventHandler(this.PIN_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

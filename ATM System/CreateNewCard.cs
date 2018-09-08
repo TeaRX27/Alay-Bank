@@ -13,11 +13,17 @@ namespace ATM_System
 {
     public partial class CreateNewCard : Form
     {
+
         public static MySqlConnection conn;
         public static string myConnectionString;
         public static string query;
         public static string salt = "Alaykana";
         string cardnumdb = "";
+        public static void Initialize(string connstr)
+        {
+            myConnectionString = connstr;
+            conn = new MySqlConnection(myConnectionString);
+        }
 
         public static void Initialize()
         {
@@ -46,7 +52,6 @@ namespace ATM_System
                 {
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("You Have Created A New Card Sucessfully!", "Card Creation Successful!");
                 }
                 catch (MySqlException ex)
                 {
@@ -128,12 +133,15 @@ namespace ATM_System
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (PIN.TextLength >= 6 && FirstName.Text != "" && LastName.Text != "")
+            if (PIN.MaskCompleted && FirstName.Text != "" && LastName.Text != "")
             {
                 Insert("Insert into card_list values ('" + EncryptDecrypt.EncryptString(CardNo.Text, salt) + "','" + EncryptDecrypt.EncryptString(PIN.Text, salt) + "','" +
                 EncryptDecrypt.EncryptString(FirstName.Text, salt) + "', '" + EncryptDecrypt.EncryptString(MI.Text, salt) + "', '" +
-                EncryptDecrypt.EncryptString(LastName.Text, salt) + "','" + EncryptDecrypt.EncryptString("0", salt)+"','" + EncryptDecrypt.EncryptString("0", salt)+"','"+
+                EncryptDecrypt.EncryptString(LastName.Text, salt) + "','" + EncryptDecrypt.EncryptString("500", salt)+"','" + EncryptDecrypt.EncryptString("0", salt)+"','"+
                 EncryptDecrypt.EncryptString("False", salt)+"')");
+                Initialize("server=localhost;uid=root;pwd=;database=alaybankcards;sslmode=none;");
+                Insert("create table alay" + CardNo.Text + " (trans_id int(255) auto_increment,trans_details varchar(255) not null, primary key(trans_id));");
+                MessageBox.Show("You Have Created A New Card Sucessfully!", "Card Creation Successful!");
                 Form cardinsert = new CardInsert();
                 cardinsert.Show();
                 Close();
@@ -142,7 +150,7 @@ namespace ATM_System
             else
             {
                 string errormessage = "";
-;                if(PIN.TextLength<6)
+;                if (!PIN.MaskCompleted) 
                 {
                     errormessage += "Pin Must not be less than 6\n";
                 }
@@ -154,7 +162,7 @@ namespace ATM_System
                 {
                     errormessage += "Last Name must not be Empty";
                 }
-                MessageBox.Show(errormessage, "Card Insert Failed!");
+                MessageBox.Show(errormessage, "Card Creation Failed!");
             }
         }
         private void button2_Click(object sender, EventArgs e)

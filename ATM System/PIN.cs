@@ -35,17 +35,42 @@ namespace ATM_System
                 }
             }
         }
+        public void getpin()
+        {
+            string query = "select PIN from card_list where Card_No ='" + CardInsert.encrcardnum + "'";
+            if (CreateNewCard.OpenConnection())
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, CreateNewCard.conn);
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        PINCode = EncryptDecrypt.DecryptString(dataReader[0].ToString(), CreateNewCard.salt);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    CreateNewCard.CloseConnection();
+                }
+            }
+        }
         public PIN()
         {
             InitializeComponent();
         }
+        string PINCode;
         int tries = 2;
         private void buttonOK_Click(object sender, EventArgs e)
         {
-           
-            if(textBox1.Text == CardInsert.PINCode)
+            getpin();  
+            if(textBox1.Text == PINCode)
             {
-                
+                Close();
             }
             else
             {
@@ -53,7 +78,7 @@ namespace ATM_System
                 {
                     MessageBox.Show("Your Tries Have Exceeded Allowed Tries\nYour Card Has Been Blocked", "CARD BLOCKED",MessageBoxButtons.OK,MessageBoxIcon.Error);
                     CardBlock();
-                    Application.ExitThread();
+                    Application.Restart();
                 }
                 else
                 {
@@ -122,6 +147,11 @@ namespace ATM_System
         private void button0_Click(object sender, EventArgs e)
         {
             textBox1.Text += button0.Text;
+        }
+
+        private void PIN_Load(object sender, EventArgs e)
+        {
+            s
         }
     }
 }

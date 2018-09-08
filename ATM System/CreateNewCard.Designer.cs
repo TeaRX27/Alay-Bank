@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.CardNo = new System.Windows.Forms.TextBox();
-            this.PIN = new System.Windows.Forms.TextBox();
             this.FirstName = new System.Windows.Forms.TextBox();
             this.MI = new System.Windows.Forms.TextBox();
             this.LastName = new System.Windows.Forms.TextBox();
@@ -45,6 +44,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
+            this.PIN = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // CardNo
@@ -55,15 +55,7 @@
             this.CardNo.ReadOnly = true;
             this.CardNo.Size = new System.Drawing.Size(321, 24);
             this.CardNo.TabIndex = 0;
-            // 
-            // PIN
-            // 
-            this.PIN.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PIN.Location = new System.Drawing.Point(78, 135);
-            this.PIN.Name = "PIN";
-            this.PIN.Size = new System.Drawing.Size(321, 24);
-            this.PIN.TabIndex = 1;
-            this.PIN.UseSystemPasswordChar = true;
+            this.CardNo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // FirstName
             // 
@@ -72,6 +64,7 @@
             this.FirstName.Name = "FirstName";
             this.FirstName.Size = new System.Drawing.Size(321, 24);
             this.FirstName.TabIndex = 2;
+            this.FirstName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // MI
             // 
@@ -80,6 +73,7 @@
             this.MI.Name = "MI";
             this.MI.Size = new System.Drawing.Size(321, 24);
             this.MI.TabIndex = 3;
+            this.MI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // LastName
             // 
@@ -88,6 +82,7 @@
             this.LastName.Name = "LastName";
             this.LastName.Size = new System.Drawing.Size(321, 24);
             this.LastName.TabIndex = 4;
+            this.LastName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // button1
             // 
@@ -213,11 +208,23 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // PIN
+            // 
+            this.PIN.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PIN.Location = new System.Drawing.Point(78, 135);
+            this.PIN.Mask = "000000";
+            this.PIN.Name = "PIN";
+            this.PIN.Size = new System.Drawing.Size(321, 24);
+            this.PIN.TabIndex = 1;
+            this.PIN.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.PIN.UseSystemPasswordChar = true;
+            // 
             // CreateNewCard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 561);
+            this.Controls.Add(this.PIN);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label5);
@@ -233,7 +240,6 @@
             this.Controls.Add(this.LastName);
             this.Controls.Add(this.MI);
             this.Controls.Add(this.FirstName);
-            this.Controls.Add(this.PIN);
             this.Controls.Add(this.CardNo);
             this.Name = "CreateNewCard";
             this.Text = "CreateNewCard";
@@ -246,7 +252,6 @@
         #endregion
 
         private System.Windows.Forms.TextBox CardNo;
-        private System.Windows.Forms.TextBox PIN;
         private System.Windows.Forms.TextBox FirstName;
         private System.Windows.Forms.TextBox MI;
         private System.Windows.Forms.TextBox LastName;
@@ -262,5 +267,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.MaskedTextBox PIN;
     }
 }
