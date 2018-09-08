@@ -1,0 +1,128 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+
+namespace ATM_System
+{
+    public partial class CardInsert : Form
+    { string fullname;
+        public static string PINCode;
+        public static int Balance, Points;
+        public void Populate_ListView(string myquery)
+        {
+            listView1.Items.Clear();
+            ListViewItem iItem;
+            string query = myquery;
+            if (CreateNewCard.OpenConnection())
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, CreateNewCard.conn);
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        iItem = new ListViewItem(EncryptDecrypt.DecryptString(dataReader[0].ToString(), CreateNewCard.salt));
+                        encrcardnum = dataReader[0].ToString();
+                        fullname = EncryptDecrypt.DecryptString(dataReader[1].ToString(), CreateNewCard.salt) + " " + EncryptDecrypt.DecryptString(dataReader[2].ToString(), CreateNewCard.salt);
+                        iItem.SubItems.Add(fullname);
+
+                        listView1.Items.Add(iItem);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    CreateNewCard.CloseConnection();
+                }
+                listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            }
+        }
+        public static string encrcardnum;
+        string cardblock;
+        public void Select_Card(string cardnum)
+        {
+            listView1.Items.Clear();
+            string query = "select PIN ,Block from card_list where Card_No ='"+encrcardnum+"'";
+            if (CreateNewCard.OpenConnection())
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, CreateNewCard.conn);
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        PINCode = EncryptDecrypt.DecryptString(dataReader[0].ToString(), CreateNewCard.salt);
+                        cardblock = EncryptDecrypt.DecryptString(dataReader[1].ToString(), CreateNewCard.salt);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    CreateNewCard.CloseConnection();
+                }
+                listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            }
+        }
+        public CardInsert()
+        {
+            InitializeComponent();
+            CreateNewCard.Initialize();
+        }
+        
+        private void button1_Click(object sender, EventArgs e)
+        {
+            foreach(ListViewItem item in listView1.SelectedItems)
+            {
+                string cardnum = item.SubItems[0].Text;
+                Select_Card(cardnum);
+                if(cardblock == "False")
+                {
+                    Form Menu = new Menu();
+                    Menu.Show();
+                    Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Your Card Has been Blocked\nPlease Contact Your Bank to Unblock your Card", "Blocked Card Inserted");
+                    Application.ExitThread();
+                }
+            }
+            
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Populate_ListView("select Card_No,FN,LN from card_list");
+        }
+
+        private void pictureBox1_DoubleClick(object sender, EventArgs e)
+        {
+            Form adminmenu = new AdminMenu();
+            adminmenu.Show();
+            Hide();
+        }
+
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form newcard = new CreateNewCard();
+            newcard.Show();
+            Hide();
+        }
+    }
+}
