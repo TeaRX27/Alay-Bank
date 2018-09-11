@@ -13,7 +13,7 @@ namespace ATM_System
     public partial class Balance_Inquiry : Form
     {
          string balance;
-        public void Select_Card(string cardnum)
+        public void getbal()
         {
             string query = "select Balance from card_list where Card_No ='" + CardInsert.encrcardnum + "'";
             if (CreateNewCard.OpenConnection())
@@ -44,7 +44,18 @@ namespace ATM_System
 
         private void Balance_Inquiry_Load(object sender, EventArgs e)
         {
+            getbal();
             label2.Text = balance;
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
         }
     }
 }

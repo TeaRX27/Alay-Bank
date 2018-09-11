@@ -64,9 +64,11 @@ namespace ATM_System
             {
                 string newbalance = (Int32.Parse(balance) - Int32.Parse(maskedTextBox1.Text)).ToString();
                 CreateNewCard.Insert("Update card_list set balance = '"+EncryptDecrypt.EncryptString(newbalance,CreateNewCard.salt)+"' where Card_No = '" + CardInsert.encrcardnum+"'");
+                MessageBox.Show(CardInsert.cardnum);
                 CreateNewCard.Initialize("server=localhost;uid=root;pwd=;database=alaybankcards;sslmode=none;");
-                CreateNewCard.Insert("Insert into alay" + CardInsert.cardnum + " values(" + EncryptDecrypt.EncryptString("Withdrew on " + DateTime.Now, CreateNewCard.salt) + ");");
+                CreateNewCard.Insert("Insert into alay" + CardInsert.cardnum + " (`trans_id`, `trans_details`) VALUES (NULL ,'" + EncryptDecrypt.EncryptString("Withdrew on " + DateTime.Now, CreateNewCard.salt) + "');");
                 MessageBox.Show("Balance Successfuly Updated\n Thank You for Using Alay Bank ATM System");
+                Application.Restart();
             }
         }
     }

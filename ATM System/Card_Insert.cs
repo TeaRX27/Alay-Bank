@@ -145,6 +145,12 @@ namespace ATM_System
             Hide();
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Form admin = new AdminMenu();
+            Hide();
+            admin.Show();
+        }
 
         private void button2_Click(object sender, EventArgs e)
         {

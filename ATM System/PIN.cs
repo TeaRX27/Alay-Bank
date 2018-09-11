@@ -84,6 +84,7 @@ namespace ATM_System
                 {
                     MessageBox.Show("Your PIN is Incorrect!\nYou Have "+tries+" Left", "PIN INCORRECT", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     tries--;
+                    textBox1.Clear();
                 }
             }
         }
@@ -151,7 +152,7 @@ namespace ATM_System
 
         private void PIN_Load(object sender, EventArgs e)
         {
-            s
+            this.TopMost = true;
         }
     }
 }

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.Inquiry = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -36,15 +36,15 @@
             this.button6 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // button1
+            // Inquiry
             // 
-            this.button1.Location = new System.Drawing.Point(36, 28);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(160, 76);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Balance Inquiry";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Inquiry.Location = new System.Drawing.Point(36, 28);
+            this.Inquiry.Name = "Inquiry";
+            this.Inquiry.Size = new System.Drawing.Size(160, 76);
+            this.Inquiry.TabIndex = 0;
+            this.Inquiry.Text = "Balance Inquiry";
+            this.Inquiry.UseVisualStyleBackColor = true;
+            this.Inquiry.Click += new System.EventHandler(this.Inquiry_Click);
             // 
             // button2
             // 
@@ -106,9 +106,10 @@
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Inquiry);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Menu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form3";
             this.ResumeLayout(false);
 
@@ -116,7 +117,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Inquiry;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
