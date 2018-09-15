@@ -125,6 +125,9 @@ namespace ATM_System
                 else
                 {
                     MessageBox.Show("Your Card Has been Blocked\nPlease Contact Your Bank to Unblock your Card", "Blocked Card Inserted");
+                    Form splashscreen = new Splash_Screen();
+                    splashscreen.Show();
+                    this.Hide();
                 }
             }
             

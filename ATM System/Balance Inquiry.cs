@@ -56,8 +56,8 @@ namespace ATM_System
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form Insertcard = new CardInsert();
-            Insertcard.Show();
+            Form splashscreen = new Splash_Screen();
+            splashscreen.Show();
             this.Hide();
         }
     }

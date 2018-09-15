@@ -16,7 +16,7 @@ namespace ATM_System
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CardInsert());
+            Application.Run(new Splash_Screen());
         }
     }
 }

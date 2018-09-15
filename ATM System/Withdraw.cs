@@ -69,8 +69,8 @@ namespace ATM_System
                 CreateNewCard.Initialize("server=localhost;uid=root;pwd=;database=alaybank_cards;sslmode=none;");
                 CreateNewCard.Insert("Insert into alay" + CardInsert.cardnum + " (`trans_id`, `trans_details`) VALUES (NULL ,'" + EncryptDecrypt.EncryptString("Withdrew on " + DateTime.Now, CreateNewCard.salt) + "');");
                 MessageBox.Show("Balance Successfuly Updated\n Thank You for Using Alay Bank ATM System");
-                Form Insertcard = new CardInsert();
-                Insertcard.Show();
+                Form splashscreen = new Splash_Screen();
+                splashscreen.Show();
                 this.Hide();
             }
         }

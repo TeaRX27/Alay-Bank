@@ -79,8 +79,8 @@ namespace ATM_System
                 {
                     MessageBox.Show("Your Tries Have Exceeded Allowed Tries\nYour Card Has Been Blocked", "CARD BLOCKED",MessageBoxButtons.OK,MessageBoxIcon.Error);
                     CardBlock();
-                    Form Insertcard = new CardInsert();
-                    Insertcard.Show();
+                    Form splashscreen = new Splash_Screen();
+                    splashscreen.Show();
                     this.Hide();
                 }
                 else

@@ -162,8 +162,8 @@ namespace ATM_System
                 CreateNewCard.Insert("Insert into alay" + CardInsert.cardnum + " (`trans_id`, `trans_details`) VALUES (NULL ,'" + EncryptDecrypt.EncryptString("Transferred Balance to "+cardnum+" on " + DateTime.Now, CreateNewCard.salt) + "');");
                 CreateNewCard.Insert("Insert into alay" + cardnum + " (`trans_id`, `trans_details`) VALUES (NULL ,'" + EncryptDecrypt.EncryptString("Recieved Balance Transfer from "+CardInsert.cardnum+" on "+ DateTime.Now, CreateNewCard.salt) + "');");
                 MessageBox.Show("Balance Transfer Successful! \n Thank You for Using Alay Bank ATM");
-                Form Insertcard = new CardInsert();
-                Insertcard.Show();
+                Form splashscreen = new Splash_Screen();
+                splashscreen.Show();
                 this.Hide();
             }
             else
