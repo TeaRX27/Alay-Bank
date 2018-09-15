@@ -27,7 +27,7 @@ namespace ATM_System
 
         public static void Initialize()
         {
-            myConnectionString = "server=localhost;uid=root;pwd=;database=alay_bank;";
+            myConnectionString = "server=localhost;uid=root;pwd=;database=alaybank;";
             conn = new MySqlConnection(myConnectionString);
         }
         public static bool OpenConnection()
@@ -139,7 +139,7 @@ namespace ATM_System
                 EncryptDecrypt.EncryptString(FirstName.Text, salt) + "', '" + EncryptDecrypt.EncryptString(MI.Text, salt) + "', '" +
                 EncryptDecrypt.EncryptString(LastName.Text, salt) + "','" + EncryptDecrypt.EncryptString("500", salt)+"','" + EncryptDecrypt.EncryptString("0", salt)+"','"+
                 EncryptDecrypt.EncryptString("False", salt)+"')");
-                Initialize("server=localhost;uid=root;pwd=;database=alaybankcards;sslmode=none;");
+                Initialize("server=localhost;uid=root;pwd=;database=alaybank_cards;sslmode=none;");
                 Insert("create table alay" + CardNo.Text + " (trans_id int(255) auto_increment,trans_details varchar(255) not null, primary key(trans_id));");
                 MessageBox.Show("You Have Created A New Card Sucessfully!", "Card Creation Successful!");
                 Form cardinsert = new CardInsert();

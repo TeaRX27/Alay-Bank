@@ -40,6 +40,7 @@ namespace ATM_System
         public Balance_Inquiry()
         {
             InitializeComponent();
+            CreateNewCard.Initialize();
         }
 
         private void Balance_Inquiry_Load(object sender, EventArgs e)
@@ -55,7 +56,9 @@ namespace ATM_System
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Application.Restart();
+            Form Insertcard = new CardInsert();
+            Insertcard.Show();
+            this.Hide();
         }
     }
 }

@@ -125,7 +125,6 @@ namespace ATM_System
                 else
                 {
                     MessageBox.Show("Your Card Has been Blocked\nPlease Contact Your Bank to Unblock your Card", "Blocked Card Inserted");
-                    Application.Restart();
                 }
             }
             
@@ -136,6 +135,8 @@ namespace ATM_System
             Populate_ListView("select Card_No,FN,LN from card_list");
             encrcardnum = null;
             cardblock = "True";
+            TopMost = true;
+            TopMost = false;
         }
 
         private void pictureBox1_DoubleClick(object sender, EventArgs e)
@@ -150,6 +151,16 @@ namespace ATM_System
             Form admin = new AdminMenu();
             Hide();
             admin.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+           if(MessageBox.Show("Do you want to Close the System?", "Do you want to Exit?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                MessageBox.Show("Thank you for Using Alay Bank Atm System");
+                Application.ExitThread();
+            }
+   
         }
 
         private void button2_Click(object sender, EventArgs e)

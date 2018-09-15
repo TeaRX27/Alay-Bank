@@ -62,6 +62,7 @@ namespace ATM_System
         public PIN()
         {
             InitializeComponent();
+            CreateNewCard.Initialize();
         }
         string PINCode;
         int tries = 2;
@@ -78,7 +79,9 @@ namespace ATM_System
                 {
                     MessageBox.Show("Your Tries Have Exceeded Allowed Tries\nYour Card Has Been Blocked", "CARD BLOCKED",MessageBoxButtons.OK,MessageBoxIcon.Error);
                     CardBlock();
-                    Application.Restart();
+                    Form Insertcard = new CardInsert();
+                    Insertcard.Show();
+                    this.Hide();
                 }
                 else
                 {
