@@ -38,61 +38,73 @@
             // 
             // Inquiry
             // 
-            this.Inquiry.Location = new System.Drawing.Point(36, 28);
+            this.Inquiry.FlatAppearance.BorderSize = 0;
+            this.Inquiry.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Inquiry.Image = global::ATM_System.Properties.Resources.balinq1;
+            this.Inquiry.Location = new System.Drawing.Point(12, 12);
             this.Inquiry.Name = "Inquiry";
-            this.Inquiry.Size = new System.Drawing.Size(160, 76);
+            this.Inquiry.Size = new System.Drawing.Size(182, 102);
             this.Inquiry.TabIndex = 0;
-            this.Inquiry.Text = "Balance Inquiry";
             this.Inquiry.UseVisualStyleBackColor = true;
             this.Inquiry.Click += new System.EventHandler(this.Inquiry_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(387, 28);
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Image = global::ATM_System.Properties.Resources.withdraw;
+            this.button2.Location = new System.Drawing.Point(200, 12);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(160, 76);
+            this.button2.Size = new System.Drawing.Size(182, 102);
             this.button2.TabIndex = 1;
-            this.button2.Text = "Withdraw";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(36, 153);
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Image = global::ATM_System.Properties.Resources.paybilla;
+            this.button3.Location = new System.Drawing.Point(12, 139);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(160, 76);
+            this.button3.Size = new System.Drawing.Size(182, 102);
             this.button3.TabIndex = 2;
-            this.button3.Text = "Pay Bills";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(387, 153);
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Image = global::ATM_System.Properties.Resources.rewards;
+            this.button4.Location = new System.Drawing.Point(200, 139);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(160, 76);
+            this.button4.Size = new System.Drawing.Size(182, 102);
             this.button4.TabIndex = 3;
-            this.button4.Text = "Claim Rewards";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(36, 278);
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Image = global::ATM_System.Properties.Resources.change_pin;
+            this.button5.Location = new System.Drawing.Point(12, 271);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(160, 76);
+            this.button5.Size = new System.Drawing.Size(182, 102);
             this.button5.TabIndex = 4;
-            this.button5.Text = "Change PIN";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(387, 278);
+            this.button6.FlatAppearance.BorderSize = 0;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Image = global::ATM_System.Properties.Resources.moneytransfer;
+            this.button6.Location = new System.Drawing.Point(390, 12);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(160, 76);
+            this.button6.Size = new System.Drawing.Size(182, 102);
             this.button6.TabIndex = 5;
-            this.button6.Text = "Balance Transfer";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
@@ -100,6 +112,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::ATM_System.Properties.Resources.main_menu;
             this.ClientSize = new System.Drawing.Size(584, 385);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
