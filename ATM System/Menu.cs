@@ -19,56 +19,103 @@ namespace ATM_System
 
         private void button6_Click(object sender, EventArgs e)
         {
-            Form transfer = new Balance_Transfer();
+           
             Form PINs = new PIN();
             PINs.ShowDialog();
-            Hide();
+            if (!PIN.pincancel)
+            {
+            Form transfer = new Balance_Transfer();
+            Close();
             transfer.Show();
+            }
+            else if (PIN.pincancel)
+            {
+                Close();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form withdraw = new Withdraw();
+           
             Form PINs = new PIN();
             PINs.ShowDialog();
-            Hide();
+           
+            if(!PIN.pincancel)
+            {
+            Form withdraw = new Withdraw();
+            Close();
             withdraw.Show();
+            }
+            else if (PIN.pincancel)
+            {
+                Close();
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Form pay = new Paybills();
+
             Form PINs = new PIN();
             PINs.ShowDialog();
-            Hide();
-            pay.Show();
+            if(!PIN.pincancel)
+            {
+                Form pay = new Paybills();
+                Close();
+                pay.Show();
+            }
+            else if (PIN.pincancel)
+            {
+                Close();
+            }
         }
-
         private void button4_Click(object sender, EventArgs e)
         {
-            Form rewards = new ClaimRewards();
+           
             Form PINs = new PIN();
             PINs.ShowDialog();
-            Hide();
-            rewards.Show();
+            if (!PIN.pincancel)
+            {
+                Form rewards = new ClaimRewards();
+                Close();
+                rewards.Show();
+            }
+            else if(PIN.pincancel)
+            {
+                Close();
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Form changepin = new ChangePin();
+           
             Form PINs = new PIN();
             PINs.ShowDialog();
-            Hide();
-            changepin.Show();
+            if(!PIN.pincancel)
+            {
+                Form changepin = new ChangePin();
+                Close();
+                changepin.Show();
+            }
+            else if (PIN.pincancel)
+            {
+                Close();
+            }
         }
 
         private void Inquiry_Click(object sender, EventArgs e)
         {
             Form PINins = new PIN();
             PINins.ShowDialog();
-            Hide();
+            if(!PIN.pincancel)
+            {
+            Close();
             Form inquiry = new Balance_Inquiry();
             inquiry.Show();
+            }
+            else if (PIN.pincancel)
+            {
+                Close();
+            }
         }
     }
 }

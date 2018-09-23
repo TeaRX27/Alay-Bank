@@ -77,15 +77,31 @@ namespace ATM_System
             InitializeComponent();
             CreateNewCard.Initialize("server = localhost; uid = root; pwd =; sslmode = none; ");
         }
-
+        string code;
         private void Splash_Screen_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if(e.KeyChar != (char)Keys.Enter)
+            {
+                code += e.KeyChar;
+            }
+            
             if(e.KeyChar == (char)Keys.Enter)
             {
-                Form CardInsert = new CardInsert();
+                if(code!="alayadmin")
+                {
+                    string expiry;
+        Form CardInsert = new CardInsert();
                 CardInsert.Show();
                 this.Hide();
+                }
+                else 
+                {
+                    Form adminmenu = new AdminLogin();
+                    adminmenu.Show();
+                    this.Hide();
+                }
             }
+           
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -115,6 +131,8 @@ namespace ATM_System
                 createdb("create database alaybank_cards");
             }
             timer1.Enabled = true;
+            code = "";
+
         }
     }
 }

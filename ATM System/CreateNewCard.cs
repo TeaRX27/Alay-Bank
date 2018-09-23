@@ -138,11 +138,11 @@ namespace ATM_System
                 Insert("Insert into card_list values ('" + EncryptDecrypt.EncryptString(CardNo.Text, salt) + "','" + EncryptDecrypt.EncryptString(PIN.Text, salt) + "','" +
                 EncryptDecrypt.EncryptString(FirstName.Text, salt) + "', '" + EncryptDecrypt.EncryptString(MI.Text, salt) + "', '" +
                 EncryptDecrypt.EncryptString(LastName.Text, salt) + "','" + EncryptDecrypt.EncryptString("500", salt)+"','" + EncryptDecrypt.EncryptString("0", salt)+"','"+
-                EncryptDecrypt.EncryptString("False", salt)+"')");
+                EncryptDecrypt.EncryptString("False", salt)+"','"+ EncryptDecrypt.EncryptString(DateTime.Now.AddYears(3).ToString("MM/yy"), salt)+"')");
                 Initialize("server=localhost;uid=root;pwd=;database=alaybank_cards;sslmode=none;");
                 Insert("create table alay" + CardNo.Text + " (trans_id int(255) auto_increment,trans_details varchar(255) not null, primary key(trans_id));");
                 MessageBox.Show("You Have Created A New Card Sucessfully!", "Card Creation Successful!");
-                Form cardinsert = new CardInsert();
+                Form cardinsert = new AdminMenu();
                 cardinsert.Show();
                 Close();
             }
@@ -167,7 +167,7 @@ namespace ATM_System
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            Form cardinsert = new CardInsert();
+            Form cardinsert = new  AdminMenu();
             cardinsert.Show();
             Close();
         }

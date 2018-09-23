@@ -130,12 +130,28 @@ namespace ATM_System
          
             foreach (ListViewItem item in listView1.SelectedItems)
             {
+                label1.Text = "Transfer Balance To :";
                 cardnum = item.SubItems[0].Text;
                 Select_Card(cardnum);
                 label1.Text += cardnum;
                 getbal();
             }
             Populate_ListView("select Card_No,FN,LN from card_list where Card_No != '" + CardInsert.encrcardnum + "'");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (DialogResult.Yes == MessageBox.Show("Do you Want to Cancel Transacation?", "Cancel Transaction", MessageBoxButtons.YesNo))
+            {
+                MessageBox.Show("Transaction Canceled");
+                Form Splash = new Splash_Screen();
+                Splash.Show();
+                this.Close();
+            }
+            else
+            {
+
+            }
         }
 
         public Balance_Transfer()
@@ -164,14 +180,14 @@ namespace ATM_System
                 MessageBox.Show("Balance Transfer Successful! \n Thank You for Using Alay Bank ATM");
                 Form splashscreen = new Splash_Screen();
                 splashscreen.Show();
-                this.Hide();
+                this.Close();
             }
             else
             {
                 MessageBox.Show("Balance Transfer Failed! \n Insufficient Balance for Transfer");
-                Form Insertcard = new CardInsert();
-                Insertcard.Show();
-                this.Hide();
+                Form splash = new Splash_Screen();
+                splash.Show();
+                this.Close();
             }
         }
     }

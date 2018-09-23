@@ -12,10 +12,10 @@ namespace ATM_System
 {
     public partial class Balance_Inquiry : Form
     {
-         string balance;
-        public void getbal()
+        public static string balance,points;
+        public static void getbalpoint()
         {
-            string query = "select Balance from card_list where Card_No ='" + CardInsert.encrcardnum + "'";
+            string query = "select Balance,Points from card_list where Card_No ='" + CardInsert.encrcardnum + "'";
             if (CreateNewCard.OpenConnection())
             {
                 try
@@ -25,6 +25,7 @@ namespace ATM_System
                     while (dataReader.Read())
                     {
                         balance = EncryptDecrypt.DecryptString(dataReader[0].ToString(), CreateNewCard.salt);
+                        points = EncryptDecrypt.DecryptString(dataReader[1].ToString(), CreateNewCard.salt);
                     }
                 }
                 catch (Exception ex)
@@ -45,8 +46,9 @@ namespace ATM_System
 
         private void Balance_Inquiry_Load(object sender, EventArgs e)
         {
-            getbal();
+            getbalpoint();
             label2.Text = balance;
+            label4.Text = points;
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -58,7 +60,7 @@ namespace ATM_System
         {
             Form splashscreen = new Splash_Screen();
             splashscreen.Show();
-            this.Hide();
+            this.Close();
         }
     }
 }

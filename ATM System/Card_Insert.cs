@@ -15,6 +15,7 @@ namespace ATM_System
     { string fullname;
         public static string PINCode;
         public static int Balance, Points;
+        string expiry;
         public void Populate_ListView(string myquery)
         {
             listView1.Items.Clear();
@@ -31,8 +32,9 @@ namespace ATM_System
                         iItem = new ListViewItem(EncryptDecrypt.DecryptString(dataReader[0].ToString(), CreateNewCard.salt));
                         encrcardnum = dataReader[0].ToString();
                         fullname = EncryptDecrypt.DecryptString(dataReader[1].ToString(), CreateNewCard.salt) + " " + EncryptDecrypt.DecryptString(dataReader[2].ToString(), CreateNewCard.salt);
+                        expiry = EncryptDecrypt.DecryptString(dataReader[3].ToString(), CreateNewCard.salt);
                         iItem.SubItems.Add(fullname);
-
+                        iItem.SubItems.Add(expiry);
                         listView1.Items.Add(iItem);
                     }
                 }
@@ -79,8 +81,8 @@ namespace ATM_System
                 listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
                 listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             }
-
-            query = "select Block from card_list where Card_No ='"+encrcardnum+"'";
+            string expiry;
+            query = "select Block,expiry from card_list where Card_No ='"+encrcardnum+"'";
             if (CreateNewCard.OpenConnection())
             {
                 try
@@ -90,6 +92,7 @@ namespace ATM_System
                     while (dataReader.Read())
                     {
                         cardblock = EncryptDecrypt.DecryptString(dataReader[0].ToString(), CreateNewCard.salt);
+                        expiry= EncryptDecrypt.DecryptString(dataReader[1].ToString(), CreateNewCard.salt);
                     }
                 }
                 catch (Exception ex)
@@ -114,9 +117,9 @@ namespace ATM_System
         {
             foreach(ListViewItem item in listView1.SelectedItems)
             {
-                 cardnum = item.SubItems[0].Text;
+                cardnum = item.SubItems[0].Text;
                 Select_Card(cardnum);
-                if(cardblock == "False")
+                if (cardblock == "False" && DateTime.Compare(DateTime.Now, DateTime.ParseExact("30/" + expiry, "dd/MM/yy", System.Globalization.CultureInfo.InvariantCulture))<=0)
                 {
                     Form Menu = new Menu();
                     Menu.Show();
@@ -124,10 +127,19 @@ namespace ATM_System
                 }
                 else
                 {
-                    MessageBox.Show("Your Card Has been Blocked\nPlease Contact Your Bank to Unblock your Card", "Blocked Card Inserted");
+                    string error = "";
+                    if (cardblock == "True")
+                    {
+                        error += "Your Card Has been Blocked\n";
+                    }
+                    if (DateTime.Compare(DateTime.Now, DateTime.ParseExact("30/" + expiry, "dd/MM/yy", System.Globalization.CultureInfo.InvariantCulture)) <= 0)
+                    {
+                        error += "Your Card Has Expired";
+                    }
+                    MessageBox.Show(error + "\n Please Contact Your Bank", "Card Insert Error");
                     Form splashscreen = new Splash_Screen();
                     splashscreen.Show();
-                    this.Hide();
+                    this.Close();
                 }
             }
             
@@ -135,7 +147,7 @@ namespace ATM_System
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Populate_ListView("select Card_No,FN,LN from card_list");
+            Populate_ListView("select Card_No,FN,LN,Expiry from card_list");
             encrcardnum = null;
             cardblock = "True";
             TopMost = true;
@@ -144,33 +156,24 @@ namespace ATM_System
 
         private void pictureBox1_DoubleClick(object sender, EventArgs e)
         {
-            Form adminmenu = new AdminMenu();
-            adminmenu.Show();
-            Hide();
+          
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            Form admin = new AdminMenu();
-            Hide();
-            admin.Show();
+
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-           if(MessageBox.Show("Do you want to Close the System?", "Do you want to Exit?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+           if(MessageBox.Show("Do you want to Go Back to the Splash Screen?", "Do you want to go back to the Splash Screen?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 MessageBox.Show("Thank you for Using Alay Bank Atm System");
-                Application.ExitThread();
+                Form splash = new Splash_Screen();
+                splash.Show();
+                this.Close();
             }
    
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Form newcard = new CreateNewCard();
-            newcard.Show();
-            Hide();
         }
     }
 }

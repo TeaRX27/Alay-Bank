@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using MySql.Data.MySqlClient;
 namespace ATM_System
 {
     public partial class ClaimRewards : Form
@@ -15,6 +15,85 @@ namespace ATM_System
         public ClaimRewards()
         {
             InitializeComponent();
+            CreateNewCard.Initialize();
+        }
+        public void Populate_ListView(string myquery)
+        {
+            listView1.Items.Clear();
+            ListViewItem iItem;
+            string query = myquery;
+            if (CreateNewCard.OpenConnection())
+            {
+                try
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, CreateNewCard.conn);
+                    MySqlDataReader dataReader = cmd.ExecuteReader();
+                    while (dataReader.Read())
+                    {
+                        iItem = new ListViewItem(EncryptDecrypt.DecryptString(dataReader[0].ToString(), CreateNewCard.salt));
+                        iItem.SubItems.Add(dataReader[1].ToString());
+                        listView1.Items.Add(iItem);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    CreateNewCard.CloseConnection();
+                }
+                listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            }
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in listView1.SelectedItems)
+            {
+                if(Int32.Parse(Balance_Inquiry.balance) >= Int32.Parse(item.SubItems[1].Text))
+                {
+                    int newbal = Int32.Parse(Balance_Inquiry.balance) - Int32.Parse(item.SubItems[1].Text);
+                    CreateNewCard.Insert("Update card_list set points = '" + EncryptDecrypt.EncryptString(newbal.ToString(), CreateNewCard.salt) + "' where Card_No = '" + CardInsert.encrcardnum + "'");
+                    CreateNewCard.Initialize("server=localhost;uid=root;pwd=;database=alaybank_cards;sslmode=none;");
+                    CreateNewCard.Insert("Insert into alay" + CardInsert.cardnum + " (`trans_id`, `trans_details`) VALUES (NULL ,'" + EncryptDecrypt.EncryptString("Claimed Reward on " + DateTime.Now, CreateNewCard.salt) + "');");
+                    MessageBox.Show("Balance Successfuly Updated\n Thank You for Using Alay Bank ATM System");
+                }
+                else
+                {
+                    MessageBox.Show("Transaction cannot be processed!\n Insufficient Reward Points\n Thank you for using Alay Bank ATM");
+                }
+            }
+            Form splashscreen = new Splash_Screen();
+            splashscreen.Show();
+            this.Hide();
+        }
+
+        private void ClaimRewards_Load(object sender, EventArgs e)
+        {
+            Balance_Inquiry.getbalpoint();
+            Populate_ListView("select * from rewards");
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            if (DialogResult.Yes == MessageBox.Show("Do you Want to Cancel Transacation?", "Cancel Transaction", MessageBoxButtons.YesNo))
+            {
+                MessageBox.Show("Transaction Canceled");
+                Form Splash = new Splash_Screen();
+                Splash.Show();
+                this.Close();
+            }
+            else
+            {
+
+            }
         }
     }
 }

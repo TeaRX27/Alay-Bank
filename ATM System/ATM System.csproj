@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminLogin.Designer.cs">
+      <DependentUpon>AdminLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdminMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,11 +123,11 @@
     <Compile Include="CreateNewCard.Designer.cs">
       <DependentUpon>CreateNewCard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="Edit_Rewards.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Edit_Rewards.Designer.cs">
+      <DependentUpon>Edit_Rewards.cs</DependentUpon>
     </Compile>
     <Compile Include="Form2.cs">
       <SubType>Form</SubType>
@@ -149,6 +155,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RewardEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RewardEditor.Designer.cs">
+      <DependentUpon>RewardEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Splash_Screen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,6 +173,9 @@
     <Compile Include="Withdraw.Designer.cs">
       <DependentUpon>Withdraw.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AdminLogin.resx">
+      <DependentUpon>AdminLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdminMenu.resx">
       <DependentUpon>AdminMenu.cs</DependentUpon>
     </EmbeddedResource>
@@ -194,8 +209,8 @@
     <EmbeddedResource Include="Deposit.resx">
       <DependentUpon>Deposit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Edit_Rewards.resx">
+      <DependentUpon>Edit_Rewards.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
@@ -219,6 +234,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="RewardEditor.resx">
+      <DependentUpon>RewardEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Splash_Screen.resx">
       <DependentUpon>Splash_Screen.cs</DependentUpon>
     </EmbeddedResource>

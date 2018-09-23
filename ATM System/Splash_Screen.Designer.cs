@@ -58,6 +58,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Splash_Screen";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Splash_Screen";
             this.Load += new System.EventHandler(this.Splash_Screen_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Splash_Screen_KeyPress);

@@ -13,10 +13,10 @@ namespace ATM_System
 {
     public partial class Withdraw : Form
     {
-        string balance;
+       public string balance;
         public void Getbalance()
         {
-            string query = "select balance from card_list where Card_No ='" + CardInsert.encrcardnum + "'";
+            string query = "select Balance from card_list where Card_No ='" + CardInsert.encrcardnum + "'";
             if (CreateNewCard.OpenConnection())
             {
                 try
@@ -65,13 +65,28 @@ namespace ATM_System
             {
                 string newbalance = (Int32.Parse(balance) - Int32.Parse(maskedTextBox1.Text)).ToString();
                 CreateNewCard.Insert("Update card_list set balance = '"+EncryptDecrypt.EncryptString(newbalance,CreateNewCard.salt)+"' where Card_No = '" + CardInsert.encrcardnum+"'");
-                MessageBox.Show(CardInsert.cardnum);
                 CreateNewCard.Initialize("server=localhost;uid=root;pwd=;database=alaybank_cards;sslmode=none;");
                 CreateNewCard.Insert("Insert into alay" + CardInsert.cardnum + " (`trans_id`, `trans_details`) VALUES (NULL ,'" + EncryptDecrypt.EncryptString("Withdrew on " + DateTime.Now, CreateNewCard.salt) + "');");
                 MessageBox.Show("Balance Successfuly Updated\n Thank You for Using Alay Bank ATM System");
                 Form splashscreen = new Splash_Screen();
                 splashscreen.Show();
                 this.Hide();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            if (DialogResult.Yes == MessageBox.Show("Do you Want to Cancel Transacation?", "Cancel Transaction", MessageBoxButtons.YesNo))
+            {
+                MessageBox.Show("Transaction Canceled");
+                Form Splash = new Splash_Screen();
+                Splash.Show();
+                this.Close();
+            }
+            else
+            {
+
             }
         }
     }

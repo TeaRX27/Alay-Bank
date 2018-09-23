@@ -242,6 +242,7 @@
             this.Controls.Add(this.FirstName);
             this.Controls.Add(this.CardNo);
             this.Name = "CreateNewCard";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CreateNewCard";
             this.Load += new System.EventHandler(this.CreateNewCard_Load);
             this.ResumeLayout(false);
