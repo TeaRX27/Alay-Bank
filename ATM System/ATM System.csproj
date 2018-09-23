@@ -325,6 +325,21 @@
   <ItemGroup>
     <None Include="Resources\change pin.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\encrypt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\decrypt.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\goback.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\create.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\transfer balance.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
