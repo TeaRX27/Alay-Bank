@@ -83,6 +83,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Withdraw";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Withdraw";
             this.UseWaitCursor = true;
             this.Load += new System.EventHandler(this.Withdraw_Load);
