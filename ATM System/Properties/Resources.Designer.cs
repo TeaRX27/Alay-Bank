@@ -313,6 +313,16 @@ namespace ATM_System.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap transfer_balance {
+            get {
+                object obj = ResourceManager.GetObject("transfer balance", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap withdraw {
             get {
                 object obj = ResourceManager.GetObject("withdraw", resourceCulture);
