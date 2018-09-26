@@ -48,5 +48,12 @@ namespace ATM_System
         {
           
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form cardlog = new Card_Logs();
+            cardlog.Show();
+            this.Close();
+        }
     }
 }

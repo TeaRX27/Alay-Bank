@@ -57,7 +57,15 @@ namespace ATM_System
                     while (dataReader.Read())
                     {
                         password = EncryptDecrypt.DecryptString(dataReader[0].ToString(), CreateNewCard.salt);
-                        lockdate = DateTime.Parse(EncryptDecrypt.DecryptString(dataReader[1].ToString(), CreateNewCard.salt));
+                        if(dataReader[1].ToString()!="")
+                        {
+                            lockdate = DateTime.Parse(EncryptDecrypt.DecryptString(dataReader[1].ToString(), CreateNewCard.salt));
+                        }
+                        else
+                        {
+                            lockdate = DateTime.Now;
+                        }
+                       
                     }
                 }
                 catch (Exception ex)
@@ -107,6 +115,7 @@ namespace ATM_System
                 if (tries == 0)
                 {
                     MessageBox.Show("Your Tries Have Exceeded Allowed Tries\nYour Account is Temporarily Locked till "+DateTime.Now.AddDays(7).ToString("MM/dd/yy") , "Account Locked", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    CreateNewCard.Insert("update useraccounts set lockdate ='" + EncryptDecrypt.EncryptString(DateTime.Now.AddDays(7).ToString("MM/dd/yy"), CreateNewCard.salt) + "' where username = '" + encrusername + "'");
                 }
                 else
                 {

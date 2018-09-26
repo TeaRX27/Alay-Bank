@@ -132,7 +132,7 @@ namespace ATM_System
                     {
                         error += "Your Card Has been Blocked\n";
                     }
-                    if (DateTime.Compare(DateTime.Now, DateTime.ParseExact("30/" + expiry, "dd/MM/yy", System.Globalization.CultureInfo.InvariantCulture)) <= 0)
+                    if (DateTime.Compare(DateTime.Now, DateTime.ParseExact("30/" + expiry, "dd/MM/yy", System.Globalization.CultureInfo.InvariantCulture)) >= 0)
                     {
                         error += "Your Card Has Expired";
                     }

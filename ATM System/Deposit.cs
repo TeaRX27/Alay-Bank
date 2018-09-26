@@ -77,7 +77,6 @@ namespace ATM_System
                 listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
                 listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             }
-
             query = "select Balance from card_list where Card_No ='" + encrcardnum + "'";
             if (CreateNewCard.OpenConnection())
             {
@@ -107,8 +106,9 @@ namespace ATM_System
         {
             if ((maskedTextBox1.Text != ""||maskedTextBox1.Text != "0") && cardnum != "")
             {
-                string newbalance = (Int32.Parse(balance) + Int32.Parse(maskedTextBox1.Text)).ToString();
-                CreateNewCard.Insert("Update card_list set balance = '" + EncryptDecrypt.EncryptString(newbalance, CreateNewCard.salt) + "' where Card_No = '" + encrcardnum + "'");
+                MessageBox.Show("asdf"+balance+"asdf");
+                int newbalance = (Int32.Parse(balance) + Int32.Parse(maskedTextBox1.Text));
+                CreateNewCard.Insert("Update card_list set balance = '" + EncryptDecrypt.EncryptString(newbalance.ToString(), CreateNewCard.salt) + "' where Card_No = '" + encrcardnum + "'");
                 CreateNewCard.Initialize("server=localhost;uid=root;pwd=;database=alaybank_cards;sslmode=none;");
                 CreateNewCard.Insert("Insert into alay" + cardnum + " (`trans_id`, `trans_details`) VALUES (NULL ,'" + EncryptDecrypt.EncryptString("Deposit on " + DateTime.Now, CreateNewCard.salt) + "');");
                 MessageBox.Show("Balance Successfuly Updated");
@@ -140,8 +140,6 @@ namespace ATM_System
                 cardnum = item.SubItems[0].Text;
                 Select_Card(cardnum);
                 label1.Text += cardnum;
-                Populate_ListView("select Card_No from card_list");
-                balance = "";
             }
             Populate_ListView("select Card_No from card_list where Card_No != '" + encrcardnum + "'");
 
@@ -156,6 +154,7 @@ namespace ATM_System
 
         private void Deposit_Load(object sender, EventArgs e)
         {
+            cardnum = "";
             Populate_ListView("select Card_No from card_list");
         }
     }
