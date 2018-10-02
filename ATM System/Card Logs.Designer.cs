@@ -42,9 +42,10 @@
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
-            this.listView1.Location = new System.Drawing.Point(23, 22);
+            this.listView1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listView1.Location = new System.Drawing.Point(12, 12);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(576, 145);
+            this.listView1.Size = new System.Drawing.Size(599, 163);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -52,7 +53,7 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Transaction Number";
-            this.columnHeader1.Width = 112;
+            this.columnHeader1.Width = 197;
             // 
             // columnHeader2
             // 
@@ -61,17 +62,23 @@
             // 
             // Card
             // 
+            this.Card.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Card.FormattingEnabled = true;
-            this.Card.Location = new System.Drawing.Point(181, 198);
+            this.Card.Location = new System.Drawing.Point(98, 178);
             this.Card.Name = "Card";
-            this.Card.Size = new System.Drawing.Size(260, 21);
+            this.Card.Size = new System.Drawing.Size(513, 30);
             this.Card.TabIndex = 1;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(228, 225);
+            this.button1.BackgroundImage = global::ATM_System.Properties.Resources.blank_button;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(12, 214);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(141, 27);
+            this.button1.Size = new System.Drawing.Size(210, 41);
             this.button1.TabIndex = 2;
             this.button1.Text = "View";
             this.button1.UseVisualStyleBackColor = true;
@@ -80,17 +87,25 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(276, 178);
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(12, 182);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 13);
+            this.label1.Size = new System.Drawing.Size(80, 21);
             this.label1.TabIndex = 3;
             this.label1.Text = "Card No.";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(536, 229);
+            this.button2.BackgroundImage = global::ATM_System.Properties.Resources.blank_button;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(401, 214);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 26);
+            this.button2.Size = new System.Drawing.Size(210, 41);
             this.button2.TabIndex = 4;
             this.button2.Text = "Go Back";
             this.button2.UseVisualStyleBackColor = true;
@@ -100,6 +115,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::ATM_System.Properties.Resources.PIN_BG;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(623, 267);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label1);
