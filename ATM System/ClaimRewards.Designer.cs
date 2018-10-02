@@ -37,7 +37,12 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(138, 191);
+            this.button1.BackgroundImage = global::ATM_System.Properties.Resources.blank_button;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(122, 146);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(238, 47);
             this.button1.TabIndex = 1;
@@ -50,9 +55,10 @@
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
-            this.listView1.Location = new System.Drawing.Point(69, 27);
+            this.listView1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listView1.Location = new System.Drawing.Point(12, 12);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(376, 128);
+            this.listView1.Size = new System.Drawing.Size(473, 128);
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -69,9 +75,14 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(137, 254);
+            this.button2.BackgroundImage = global::ATM_System.Properties.Resources.blank_button;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(354, 199);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(238, 29);
+            this.button2.Size = new System.Drawing.Size(131, 44);
             this.button2.TabIndex = 3;
             this.button2.Text = "Cancel Transaction";
             this.button2.UseVisualStyleBackColor = true;
@@ -81,7 +92,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(497, 288);
+            this.BackgroundImage = global::ATM_System.Properties.Resources.PIN_BG;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(497, 251);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.button1);
