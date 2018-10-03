@@ -58,7 +58,7 @@ namespace ATM_System
                 Select_Card(cardnum);
                 label1.Text += cardnum;
             }
-            Populate_ListView("select Card_No from card_list where Card_No != '" + CardInsert.encrcardnum + "'");
+            Populate_ListView("select Card_No,FN,LN,Block,Expiry from card_list where Card_No != '" + CardInsert.encrcardnum + "'");
         }
 
         private void Block_Card_Load(object sender, EventArgs e)
@@ -75,8 +75,12 @@ namespace ATM_System
 
         private void button1_Click(object sender, EventArgs e)
         {
-            CreateNewCard.Insert("Update card_list set block = '" + EncryptDecrypt.EncryptString("False", CreateNewCard.salt) + "' where Card_No = '" + CardInsert.encrcardnum + "'");
+            CreateNewCard.Insert("Update card_list set block = '" + EncryptDecrypt.EncryptString("True", CreateNewCard.salt) + "' where Card_No = '" + CardInsert.encrcardnum + "'");
             MessageBox.Show("Card Successfully Blocked!");
+            Populate_ListView("select Card_No, FN,LN,Block,Expiry from card_list");
+            cardnum = "";
+            CardInsert.encrcardnum = "";
+ label1.Text = "Card to be Blocked: ";
         }
 
         public void Populate_ListView(string myquery)

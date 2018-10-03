@@ -58,7 +58,23 @@ namespace ATM_System
 
         private void button4_Click(object sender, EventArgs e)
         {
+            Form block = new Block_Card();
+            block.Show();
+            this.Close();
+        }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form changeblockpin = new BlockChangepin();
+            changeblockpin.Show();
+            this.Close();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Form renew = new Renew();
+            renew.Show();
+            this.Close();
         }
     }
 }

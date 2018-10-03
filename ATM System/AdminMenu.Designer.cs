@@ -66,6 +66,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "Change PIN for blocked card";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -155,6 +156,7 @@
             this.button7.TabIndex = 6;
             this.button7.Text = "Renew Card";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // AdminMenu
             // 
