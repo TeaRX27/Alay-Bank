@@ -33,12 +33,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Users\XCree\Source\Repos\COESS_System\System\bin\Debug\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -129,6 +136,12 @@
     <Compile Include="Edit_Rewards.Designer.cs">
       <DependentUpon>Edit_Rewards.cs</DependentUpon>
     </Compile>
+    <Compile Include="Recieptprint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recieptprint.Designer.cs">
+      <DependentUpon>Recieptprint.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,11 +168,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reciept.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reciept.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Renew.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Renew.Designer.cs">
       <DependentUpon>Renew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RewardCode.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RewardCode.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="RewardEditor.cs">
       <SubType>Form</SubType>
@@ -218,6 +243,9 @@
     <EmbeddedResource Include="Edit_Rewards.resx">
       <DependentUpon>Edit_Rewards.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Recieptprint.resx">
+      <DependentUpon>Recieptprint.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
@@ -240,8 +268,16 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reciept.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Reciept.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Renew.resx">
       <DependentUpon>Renew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RewardCode.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RewardCode.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="RewardEditor.resx">
       <DependentUpon>RewardEditor.cs</DependentUpon>
@@ -351,6 +387,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\blank button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

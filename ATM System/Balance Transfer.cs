@@ -177,10 +177,20 @@ namespace ATM_System
                 CreateNewCard.Initialize("server=localhost;uid=root;pwd=;database=alaybank_cards;sslmode=none;");
                 CreateNewCard.Insert("Insert into alay" + CardInsert.cardnum + " (`trans_id`, `trans_details`) VALUES (NULL ,'" + EncryptDecrypt.EncryptString("Transferred Balance to "+cardnum+" on " + DateTime.Now, CreateNewCard.salt) + "');");
                 CreateNewCard.Insert("Insert into alay" + cardnum + " (`trans_id`, `trans_details`) VALUES (NULL ,'" + EncryptDecrypt.EncryptString("Recieved Balance Transfer from "+CardInsert.cardnum+" on "+ DateTime.Now, CreateNewCard.salt) + "');");
-                MessageBox.Show("Balance Transfer Successful! \n Thank You for Using Alay Bank ATM");
-                Form splashscreen = new Splash_Screen();
-                splashscreen.Show();
-                this.Close();
+                if (MessageBox.Show("Do you want another Transaction?", "Another Transaction", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    Form mm = new Menu();
+                    mm.Show();
+                    this.Close();
+                }
+                else
+                {
+
+                    MessageBox.Show("Thank You for Using Alay Bank ATM");
+                    Form splash = new Splash_Screen();
+                    splash.Show();
+                    this.Close();
+                }
             }
             else
             {

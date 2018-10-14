@@ -118,6 +118,8 @@ namespace ATM_System
 
         private void Splash_Screen_Load(object sender, EventArgs e)
         {
+            CreateNewCard.Insert("Delete from 'rewardprint'");
+            CreateNewCard.Insert("Delete from 'transrec'");
             checkdb("alaybank", "alaybank");
             if(!alaybank)
             {

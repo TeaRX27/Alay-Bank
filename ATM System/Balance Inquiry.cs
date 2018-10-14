@@ -48,7 +48,7 @@ namespace ATM_System
         {
             getbalpoint();
             label2.Text = balance;
-            label4.Text = points;
+            label3.Text = points;
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -58,9 +58,21 @@ namespace ATM_System
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form splashscreen = new Splash_Screen();
-            splashscreen.Show();
-            this.Close();
+            if (MessageBox.Show("Do you want another Transaction?", "Another Transaction", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                Form mm = new Menu();
+                mm.Show();
+                this.Close();
+            }
+            else
+            {
+
+                MessageBox.Show("Thank You for Using Alay Bank ATM");
+                Form splash = new Splash_Screen();
+                splash.Show();
+                this.Close();
+            }
+
         }
     }
 }

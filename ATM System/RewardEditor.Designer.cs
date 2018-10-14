@@ -123,6 +123,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "RewardEditor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RewardEditor";
             this.Load += new System.EventHandler(this.RewardEditor_Load);
             this.ResumeLayout(false);

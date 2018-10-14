@@ -69,7 +69,7 @@
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(12, 199);
+            this.button1.Location = new System.Drawing.Point(12, 238);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(226, 56);
             this.button1.TabIndex = 1;
@@ -80,7 +80,7 @@
             // maskedTextBox1
             // 
             this.maskedTextBox1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTextBox1.Location = new System.Drawing.Point(213, 162);
+            this.maskedTextBox1.Location = new System.Drawing.Point(109, 205);
             this.maskedTextBox1.Mask = "000000000";
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.Size = new System.Drawing.Size(259, 27);
@@ -107,7 +107,7 @@
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(246, 199);
+            this.button2.Location = new System.Drawing.Point(246, 238);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(226, 56);
             this.button2.TabIndex = 4;
@@ -121,7 +121,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::ATM_System.Properties.Resources.PIN_BG;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(484, 266);
+            this.ClientSize = new System.Drawing.Size(484, 306);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.maskedTextBox1);

@@ -75,12 +75,20 @@ namespace ATM_System
 
         private void button1_Click(object sender, EventArgs e)
         {
-            CreateNewCard.Insert("Update card_list set block = '" + EncryptDecrypt.EncryptString("True", CreateNewCard.salt) + "' where Card_No = '" + CardInsert.encrcardnum + "'");
-            MessageBox.Show("Card Successfully Blocked!");
-            Populate_ListView("select Card_No, FN,LN,Block,Expiry from card_list");
-            cardnum = "";
-            CardInsert.encrcardnum = "";
- label1.Text = "Card to be Blocked: ";
+            if(cardnum != "")
+            {
+                CreateNewCard.Insert("Update card_list set block = '" + EncryptDecrypt.EncryptString("True", CreateNewCard.salt) + "' where Card_No = '" + CardInsert.encrcardnum + "'");
+                MessageBox.Show("Card Successfully Blocked!");
+                Populate_ListView("select Card_No, FN,LN,Block,Expiry from card_list");
+                cardnum = "";
+                CardInsert.encrcardnum = "";
+                label1.Text = "Card to be Blocked: ";
+            }
+            else
+            {
+                MessageBox.Show("Cannot Block Card!\nNo Card Selected","Card Block Failed");
+            }
+
         }
 
         public void Populate_ListView(string myquery)

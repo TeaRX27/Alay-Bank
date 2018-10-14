@@ -189,7 +189,7 @@
             this.buttonCLEAR.FlatAppearance.BorderSize = 0;
             this.buttonCLEAR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonCLEAR.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCLEAR.Image = global::ATM_System.Properties.Resources.X;
+            this.buttonCLEAR.Image = global::ATM_System.Properties.Resources.cancel;
             this.buttonCLEAR.Location = new System.Drawing.Point(365, 222);
             this.buttonCLEAR.Name = "buttonCLEAR";
             this.buttonCLEAR.Size = new System.Drawing.Size(88, 82);
@@ -202,7 +202,7 @@
             this.buttonCANCEL.FlatAppearance.BorderSize = 0;
             this.buttonCANCEL.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonCANCEL.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonCANCEL.Image = global::ATM_System.Properties.Resources.cancel;
+            this.buttonCANCEL.Image = global::ATM_System.Properties.Resources.X;
             this.buttonCANCEL.Location = new System.Drawing.Point(365, 316);
             this.buttonCANCEL.Name = "buttonCANCEL";
             this.buttonCANCEL.Size = new System.Drawing.Size(88, 82);

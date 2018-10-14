@@ -31,7 +31,7 @@ namespace ATM_System
                     while (dataReader.Read())
                     {
                         iItem = new ListViewItem(EncryptDecrypt.DecryptString(dataReader[0].ToString(), CreateNewCard.salt));
-                        iItem.SubItems.Add(dataReader[1].ToString());
+                        iItem.SubItems.Add(EncryptDecrypt.DecryptString(dataReader[1].ToString(),CreateNewCard.salt));
                         listView1.Items.Add(iItem);
                     }
                 }
@@ -53,11 +53,31 @@ namespace ATM_System
             {
                 if(Int32.Parse(Balance_Inquiry.balance) >= Int32.Parse(item.SubItems[1].Text))
                 {
+
                     int newbal = Int32.Parse(Balance_Inquiry.balance) - Int32.Parse(item.SubItems[1].Text);
                     CreateNewCard.Insert("Update card_list set points = '" + EncryptDecrypt.EncryptString(newbal.ToString(), CreateNewCard.salt) + "' where Card_No = '" + CardInsert.encrcardnum + "'");
                     CreateNewCard.Initialize("server=localhost;uid=root;pwd=;database=alaybank_cards;sslmode=none;");
                     CreateNewCard.Insert("Insert into alay" + CardInsert.cardnum + " (`trans_id`, `trans_details`) VALUES (NULL ,'" + EncryptDecrypt.EncryptString("Claimed Reward on " + DateTime.Now, CreateNewCard.salt) + "');");
                     MessageBox.Show("Balance Successfuly Updated\n Thank You for Using Alay Bank ATM System");
+                    CreateNewCard.Initialize();
+                    CreateNewCard.Insert("insert into rewardprint values('" + item.SubItems[0].Text + "','" + BlockChangepin.build() + "')");
+                    Form print = new Recieptprint();
+                    Recieptprint.source = "reward";
+                    print.ShowDialog();
+                    if (MessageBox.Show("Do you want another Transaction?", "Another Transaction", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        Form mm = new Menu();
+                        mm.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        CreateNewCard.Insert("Insert Into transrec values ('" + CardInsert.cardnum + "','" + newbal + " Points')");
+                        MessageBox.Show("Thank You for Using Alay Bank ATM");
+                        Form splash = new Splash_Screen();
+                        splash.Show();
+                        this.Close();
+                    }
                 }
                 else
                 {
@@ -71,13 +91,9 @@ namespace ATM_System
 
         private void ClaimRewards_Load(object sender, EventArgs e)
         {
+
             Balance_Inquiry.getbalpoint();
             Populate_ListView("select * from rewards");
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-
         }
 
         private void button2_Click(object sender, EventArgs e)

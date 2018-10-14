@@ -128,12 +128,13 @@ namespace ATM_System
                 cardno = build();
                 call(cardno);
             }
+            PIN.Text = BlockChangepin.build();
             CardNo.Text = cardno;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (PIN.MaskCompleted && FirstName.Text != "" && LastName.Text != "")
+            if (PIN.MaskCompleted && FirstName.Text != "" && LastName.Text != ""&& PIN.Text != "911911")
             {
                 Insert("Insert into card_list values ('" + EncryptDecrypt.EncryptString(CardNo.Text, salt) + "','" + EncryptDecrypt.EncryptString(PIN.Text, salt) + "','" +
                 EncryptDecrypt.EncryptString(FirstName.Text, salt) + "', '" + EncryptDecrypt.EncryptString(MI.Text, salt) + "', '" +
@@ -154,11 +155,15 @@ namespace ATM_System
                 {
                     errormessage += "Pin Must not be less than 6\n";
                 }
-                else if(FirstName.Text =="")
+                 if(FirstName.Text =="")
                 {
                     errormessage += "First Name must not be Empty\n";
                 }
-                else if(LastName.Text == "")
+                 if(PIN.Text == "911911")
+                {
+                    errormessage += "Entered PIN is a Reserved Code\n";
+                }
+                 if(LastName.Text == "")
                 {
                     errormessage += "Last Name must not be Empty";
                 }
@@ -173,6 +178,11 @@ namespace ATM_System
         }
 
         private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PIN_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
 
         }

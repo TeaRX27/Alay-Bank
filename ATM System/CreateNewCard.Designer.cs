@@ -174,10 +174,11 @@
             this.PIN.Location = new System.Drawing.Point(26, 136);
             this.PIN.Mask = "000000";
             this.PIN.Name = "PIN";
+            this.PIN.ReadOnly = true;
             this.PIN.Size = new System.Drawing.Size(321, 23);
             this.PIN.TabIndex = 1;
             this.PIN.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.PIN.UseSystemPasswordChar = true;
+            this.PIN.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.PIN_MaskInputRejected);
             // 
             // CreateNewCard
             // 

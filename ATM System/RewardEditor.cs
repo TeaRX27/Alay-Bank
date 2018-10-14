@@ -23,8 +23,28 @@ namespace ATM_System
         {
             if (buttonmode == "Add")
             {
+                if(textBox1.Text != ""&& maskedTextBox1.Text != ""&&maskedTextBox1.Text != "0")
+                {
                 CreateNewCard.Insert("Insert into rewards  (`Rewards`, `Points`) VALUES ('" + EncryptDecrypt.EncryptString(textBox1.Text, CreateNewCard.salt) + "','" + EncryptDecrypt.EncryptString(maskedTextBox1.Text, CreateNewCard.salt) + "');");
                 MessageBox.Show("Reward Successfully Added");
+                }
+                else
+                {
+                    string error = "";
+                    if(textBox1.Text =="")
+                    {
+                        error += "Reward Name must not be Empty\n";
+                    }
+                    if(maskedTextBox1.Text == "")
+                    {
+                        error += "Rewards Cost must not be Empty\n";
+                    }
+                    if (maskedTextBox1.Text == "0")
+                    {
+                        error += "Rewards Cost must not be Zero";
+                    }
+                }
+                
             }
             else if (buttonmode == "Edit")
             {

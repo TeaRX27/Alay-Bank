@@ -58,7 +58,7 @@ namespace ATM_System
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("No Card Selected");
                 }
                 finally
                 {

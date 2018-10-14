@@ -104,7 +104,7 @@ namespace ATM_System
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if ((maskedTextBox1.Text != ""||maskedTextBox1.Text != "0") && cardnum != "")
+            if ((maskedTextBox1.Text != ""||maskedTextBox1.Text != "0") && cardnum != "" && Int32.Parse(maskedTextBox1.Text) >= 100)
             {
                 MessageBox.Show("asdf"+balance+"asdf");
                 int newbalance = (Int32.Parse(balance) + Int32.Parse(maskedTextBox1.Text));
@@ -124,7 +124,11 @@ namespace ATM_System
                 {
                     error += "Deposit Amount must be greater than 0\n";
                 }
-                if(cardnum!="")
+                if(Int32.Parse(maskedTextBox1.Text)<100)
+                {
+                    error += "Amount Must be 100 Pesos or Greater";
+                }
+                if(cardnum=="")
                 {
                     error += "No Card Selected";
                 }

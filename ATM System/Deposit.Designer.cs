@@ -121,6 +121,7 @@
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Deposit";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Deposit";
             this.Load += new System.EventHandler(this.Deposit_Load);
             this.ResumeLayout(false);

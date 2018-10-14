@@ -125,6 +125,7 @@
             this.Controls.Add(this.listView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Card_Logs";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Card_Logs";
             this.Load += new System.EventHandler(this.Card_Logs_Load);
             this.ResumeLayout(false);

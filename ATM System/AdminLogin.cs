@@ -122,6 +122,7 @@ namespace ATM_System
                     MessageBox.Show("Your Password is Incorrect!\nYou Have " + tries + " Left", "Password Incorrect", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     tries--;
                     textBox1.Clear();
+                    textBox2.Clear();
                 }
             }
         }

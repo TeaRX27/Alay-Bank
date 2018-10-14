@@ -61,14 +61,12 @@ namespace ATM_System
                     MySqlDataReader dataReader = cmd.ExecuteReader();
                     while (dataReader.Read())
                     {
-                        if (DateTime.Compare(DateTime.Now, DateTime.ParseExact("30/" + EncryptDecrypt.DecryptString(dataReader[4].ToString(), CreateNewCard
+                        if (DateTime.Compare(DateTime.Now, DateTime.ParseExact("30/" + EncryptDecrypt.DecryptString(dataReader[3].ToString(), CreateNewCard
                             .salt), "dd/MM/yy", System.Globalization.CultureInfo.InvariantCulture)) >= 0)
                         {
                             iItem = new ListViewItem(EncryptDecrypt.DecryptString(dataReader[0].ToString(), CreateNewCard.salt));
                             fullname = EncryptDecrypt.DecryptString(dataReader[1].ToString(), CreateNewCard.salt) + " " + EncryptDecrypt.DecryptString(dataReader[2].ToString(), CreateNewCard.salt);
-                            expiry = EncryptDecrypt.DecryptString(dataReader[4].ToString(), CreateNewCard.salt);
                             iItem.SubItems.Add(fullname);
-                            iItem.SubItems.Add(expiry);
                             listView1.Items.Add(iItem);
                         }
 
@@ -89,13 +87,21 @@ namespace ATM_System
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+    
+            if(cardnum!="")
+            {
             CreateNewCard.Insert("Update card_list set expiry = '" + EncryptDecrypt.EncryptString(DateTime.Now.AddYears(3).ToString("MM/yy"), CreateNewCard.salt) + "' where Card_No = '" + CardInsert.encrcardnum + "'");
             MessageBox.Show("Card Successfully Renewed!");
             Populate_ListView("select Card_No, FN,LN,Expiry from card_list");
             cardnum = "";
             CardInsert.encrcardnum = "";
                label1.Text = "Expired Card Selected: ";
+            }
+            else
+            {
+                MessageBox.Show("No Card Selected", "Renew Failed!");
+            }
+          
         }
         string cardnum;
         private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -109,6 +115,13 @@ namespace ATM_System
             }
             Populate_ListView("select Card_No, FN,LN,Expiry from card_list where Card_No != '" + CardInsert.encrcardnum + "'");
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form admin = new AdminMenu();
+            admin.Show();
+            this.Close();
         }
 
         private void Renew_Load(object sender, EventArgs e)

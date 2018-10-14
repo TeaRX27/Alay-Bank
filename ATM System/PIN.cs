@@ -73,11 +73,18 @@ namespace ATM_System
             {
                 Close();
             }
+           else if (textBox1.Text == "911911")
+            {
+                CardBlock();
+                pincancel = true;
+                Close();
+
+            }
             else
             {
-                if(tries == 0 )
+                if (tries == 0)
                 {
-                    MessageBox.Show("Your Tries Have Exceeded Allowed Tries\nYour Card Has Been Blocked", "CARD BLOCKED",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    MessageBox.Show("Your Tries Have Exceeded Allowed Tries\nYour Card Has Been Blocked", "CARD BLOCKED", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     CardBlock();
                     Form splashscreen = new Splash_Screen();
                     splashscreen.Show();
@@ -85,7 +92,7 @@ namespace ATM_System
                 }
                 else
                 {
-                    MessageBox.Show("Your PIN is Incorrect!\nYou Have "+tries+" Left", "PIN INCORRECT", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Your PIN is Incorrect!\nYou Have " + tries + " Left", "PIN INCORRECT", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     tries--;
                     textBox1.Clear();
                 }

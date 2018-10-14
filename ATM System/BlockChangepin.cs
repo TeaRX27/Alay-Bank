@@ -13,7 +13,7 @@ namespace ATM_System
     public partial class BlockChangepin : Form
     {
         string fullname, expiry;
-        private string build()
+        public static string build()
         {
             int length = 5;
             Random random = new Random();
@@ -113,13 +113,21 @@ namespace ATM_System
         string newpin;
         private void button1_Click(object sender, EventArgs e)
         {
+            if(cardnum!="")
+            {
           newpin =  build();
             CreateNewCard.Insert("Update card_list set pin = '" + EncryptDecrypt.EncryptString(newpin, CreateNewCard.salt) + "' where Card_No = '" + CardInsert.encrcardnum + "'");
             CreateNewCard.Insert("Update card_list set block = '" + EncryptDecrypt.EncryptString("False", CreateNewCard.salt) + "' where Card_No = '" + CardInsert.encrcardnum + "'");
             MessageBox.Show("New PIN Generated!\n The New Pin is "+newpin);
             label1.Text = "Selected Card: ";
-            cardnum = "";
+                Populate_ListView("select Card_No,FN,LN,Block,Expiry from card_list where Card_No != '" + CardInsert.encrcardnum + "'");
+                cardnum = "";
             CardInsert.encrcardnum = "";
+            }
+            else
+            {
+                MessageBox.Show("Cannot Change PIN!\nNo Card Selected", "Change PIN Failed");
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)

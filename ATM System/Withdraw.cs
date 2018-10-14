@@ -63,14 +63,38 @@ namespace ATM_System
             }
             else
             {
+                if(Int32.Parse(maskedTextBox1.Text) >= 100)
+                {
                 string newbalance = (Int32.Parse(balance) - Int32.Parse(maskedTextBox1.Text)).ToString();
                 CreateNewCard.Insert("Update card_list set balance = '"+EncryptDecrypt.EncryptString(newbalance,CreateNewCard.salt)+"' where Card_No = '" + CardInsert.encrcardnum+"'");
                 CreateNewCard.Initialize("server=localhost;uid=root;pwd=;database=alaybank_cards;sslmode=none;");
                 CreateNewCard.Insert("Insert into alay" + CardInsert.cardnum + " (`trans_id`, `trans_details`) VALUES (NULL ,'" + EncryptDecrypt.EncryptString("Withdrew on " + DateTime.Now, CreateNewCard.salt) + "');");
-                MessageBox.Show("Balance Successfuly Updated\n Thank You for Using Alay Bank ATM System");
-                Form splashscreen = new Splash_Screen();
-                splashscreen.Show();
-                this.Hide();
+                    if (MessageBox.Show("Do you want another Transaction?", "Another Transaction", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        Form mm = new Menu();
+                        mm.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        CreateNewCard.Initialize();
+                        CreateNewCard.Insert("Insert Into transrec values ('" + CardInsert.cardnum + "','" + newbalance + "')");
+                        Form print = new Recieptprint();
+                        Recieptprint.source = "cash";
+                        print.ShowDialog();
+                        MessageBox.Show("Thank You for Using Alay Bank ATM");
+                        Form splash = new Splash_Screen();
+                        splash.Show();
+                        this.Close();
+                    }
+                }
+               else
+                {
+                    MessageBox.Show("Withdrawn Amount must be 100 Pesos or greater", "Withdraw Failed");
+                    Form splashscreen = new Splash_Screen();
+                    splashscreen.Show();
+                    this.Hide();
+                }
             }
         }
 
