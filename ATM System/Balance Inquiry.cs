@@ -66,7 +66,11 @@ namespace ATM_System
             }
             else
             {
-
+                CreateNewCard.Initialize();
+                CreateNewCard.Insert("Insert Into transrec values ('" + CardInsert.cardnum + "','" + balance + "')");
+                Form print = new Recieptprint();
+                Recieptprint.source = "cash";
+                print.ShowDialog();
                 MessageBox.Show("Thank You for Using Alay Bank ATM");
                 Form splash = new Splash_Screen();
                 splash.Show();

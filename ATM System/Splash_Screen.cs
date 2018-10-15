@@ -76,6 +76,7 @@ namespace ATM_System
         {
             InitializeComponent();
             CreateNewCard.Initialize("server = localhost; uid = root; pwd =; sslmode = none; ");
+          
         }
         string code;
         private void Splash_Screen_KeyPress(object sender, KeyPressEventArgs e)
@@ -118,8 +119,7 @@ namespace ATM_System
 
         private void Splash_Screen_Load(object sender, EventArgs e)
         {
-            CreateNewCard.Insert("Delete from 'rewardprint'");
-            CreateNewCard.Insert("Delete from 'transrec'");
+            
             checkdb("alaybank", "alaybank");
             if(!alaybank)
             {
@@ -134,7 +134,9 @@ namespace ATM_System
             }
             timer1.Enabled = true;
             code = "";
-
+            CreateNewCard.Initialize();
+            CreateNewCard.Insert("Delete from rewardprint");
+            CreateNewCard.Insert("Delete from transrec");
         }
     }
 }
